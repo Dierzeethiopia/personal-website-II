@@ -1,0 +1,147 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-amber: var(--amber);
+  --color-ivory: var(--ivory);
+  --color-graphite: var(--graphite);
+  --color-rule: var(--rule);
+  --font-display: "Space Grotesk", "Noto Sans Ethiopic", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter Tight", "Noto Sans Ethiopic", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root {
+  --radius: 0.25rem;
+  --graphite: oklch(0.155 0.008 260);
+  --ivory: oklch(0.955 0.012 85);
+  --background: var(--graphite);
+  --foreground: var(--ivory);
+  --card: oklch(0.19 0.01 260);
+  --card-foreground: var(--ivory);
+  --popover: oklch(0.19 0.01 260);
+  --popover-foreground: var(--ivory);
+  --primary: oklch(0.64 0.19 270);
+  --primary-foreground: oklch(0.155 0.008 260);
+  --secondary: oklch(0.23 0.012 260);
+  --secondary-foreground: var(--ivory);
+  --muted: oklch(0.23 0.012 260);
+  --muted-foreground: oklch(0.72 0.02 260);
+  --accent: oklch(0.79 0.11 70);
+  --accent-foreground: oklch(0.155 0.008 260);
+  --amber: oklch(0.79 0.11 70);
+  --destructive: oklch(0.65 0.2 25);
+  --destructive-foreground: var(--ivory);
+  --border: oklch(0.955 0.012 85 / 12%);
+  --rule: oklch(0.955 0.012 85 / 18%);
+  --input: oklch(0.955 0.012 85 / 15%);
+  --ring: oklch(0.64 0.19 270);
+  --ease: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Light atmosphere for personal story */
+.theme-ivory {
+  --background: var(--ivory);
+  --foreground: var(--graphite);
+  --muted-foreground: oklch(0.42 0.02 260);
+  --border: oklch(0.155 0.008 260 / 14%);
+  --rule: oklch(0.155 0.008 260 / 22%);
+  --card: oklch(0.93 0.014 85);
+  --primary: oklch(0.5 0.2 270);
+  --amber: oklch(0.6 0.13 60);
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 0.95rem + 0.2vw, 1.125rem);
+    line-height: 1.6;
+  }
+  h1, h2, h3, h4 { font-family: var(--font-display); letter-spacing: -0.03em; line-height: 0.95; }
+  ::selection { background: var(--primary); color: var(--graphite); }
+  :focus-visible { outline: 2px solid var(--primary); outline-offset: 3px; border-radius: 2px; }
+  section[id] { scroll-margin-top: 4rem; }
+}
+
+@utility text-mega { font-size: clamp(3rem, 1.5rem + 8vw, 10rem); font-weight: 600; }
+@utility text-display { font-size: clamp(2.25rem, 1.2rem + 4.5vw, 6rem); font-weight: 600; }
+@utility text-title { font-size: clamp(1.6rem, 1.1rem + 2vw, 3rem); font-weight: 500; }
+@utility label-mono {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-muted-foreground);
+}
+@utility grain {
+  &::after {
+    content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 60; opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+@utility link-u {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px; background-repeat: no-repeat; background-position: 0 100%;
+  transition: background-size 220ms var(--ease);
+  &:hover, &:focus-visible { background-size: 100% 1px; }
+}
+
+/* Reveal system */
+.mask { display: block; overflow: hidden; padding-bottom: 0.08em; }
+.mask > span { display: block; transform: translateY(105%); transition: transform 900ms var(--ease); }
+.in .mask > span, .mask.in > span { transform: none; }
+.mask:nth-child(2) > span { transition-delay: 90ms; }
+.mask:nth-child(3) > span { transition-delay: 180ms; }
+.fade { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease), transform 700ms var(--ease); }
+.in .fade, .fade.in { opacity: 1; transform: none; }
+.rule-draw { transform-origin: left; transform: scaleX(0); transition: transform 1000ms var(--ease); }
+.in .rule-draw, .rule-draw.in { transform: scaleX(1); }
+.depth { transform: scale(0.94); opacity: 0.4; transition: transform 1000ms var(--ease), opacity 1000ms var(--ease); }
+.in .depth, .depth.in { transform: none; opacity: 1; }
+
+/* SVG dash animations */
+.dash-flow { stroke-dasharray: 4 10; animation: dash 2.4s linear infinite; }
+@keyframes dash { to { stroke-dashoffset: -56; } }
+.draw-path { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 2200ms var(--ease); }
+.in .draw-path { stroke-dashoffset: 0; }
+
+.reduce-motion *, .reduce-motion *::before, .reduce-motion *::after {
+  animation-duration: 0.001ms !important; animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+}
+.reduce-motion .mask > span, .reduce-motion .fade, .reduce-motion .depth, .reduce-motion .rule-draw { transform: none !important; opacity: 1 !important; }
+.reduce-motion .draw-path { stroke-dashoffset: 0 !important; }
+.reduce-motion html { scroll-behavior: auto; }
