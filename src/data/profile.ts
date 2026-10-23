@@ -3,7 +3,6 @@ export const metrics = {
   slackEngagementLift: "33%",
   slackExperimentScale: "hundreds of thousands of users",
   gubaRerenderReduction: "27%",
-  thresholdPlacement: "3rd place",
   thresholdLatencyReduction: "~29%",
   opportunityUniversitiesTarget: "10",
   opportunityStudentsTarget: "~25,000",
@@ -18,7 +17,7 @@ export const links = {
 export const profile = {
   name: "Dires Abatieneh",
   greeting: "ሰላም — hi, I’m Dires.",
-  school: "CS + Mathematics at Williams College ’28",
+  school: "Computer Science and Mathematics, Williams College ’28",
   previously: "Previously SWE Intern at Slack / Salesforce",
   tagline: "I like figuring out what makes things work, then making them work better. That curiosity has taken me from notification infrastructure at Slack to building AI tools at Williams. These days, I’m drawn to backend systems, useful AI, and ideas I can’t leave alone.",
 };
@@ -136,7 +135,7 @@ export const projects: Project[] = [
     id: "threshold",
     title: "Threshold",
     subtitle: "AI request evaluation",
-    status: `Salesforce hackathon · Jul 2026 · ${metrics.thresholdPlacement}`,
+    status: "Salesforce hackathon · Jul 2026",
     tech: ["React", "Node.js", "Claude"],
     summary:
       "Turns unstructured requests into validated fields, then hands them to deterministic backend scoring — the model never gets the final say unchecked.",
@@ -144,7 +143,7 @@ export const projects: Project[] = [
     details: [
       { heading: "How it works", items: ["Extracts structured information from free-form requests", "Validates model outputs before deterministic scoring"] },
       { heading: "Reliability", items: ["Handles malformed JSON, schema violations and inconsistent inputs"] },
-      { heading: "Outcome", items: [`${metrics.thresholdPlacement} at the hackathon`, `${metrics.thresholdLatencyReduction} lower processing time`] },
+      { heading: "Outcome", items: [`${metrics.thresholdLatencyReduction} lower processing time`] },
     ],
   },
   {
