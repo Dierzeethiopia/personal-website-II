@@ -342,6 +342,37 @@ export function Index() {
   );
 }
 
+export function Gallery() {
+  return (
+    <section id="ethiopia" className={`${wrap} py-28 md:py-40`}>
+      <SectionHead index="06" label="Ethiopia" title="A place that stays with me." />
+      <div className="grid gap-6 md:grid-cols-3">
+        <figure data-reveal className="fade overflow-hidden rounded-sm border border-border bg-card/70">
+          <img
+            src="/ethiopian-baskets.png"
+            alt="Colorful handwoven Ethiopian baskets"
+            className="h-56 w-full object-cover md:h-72"
+          />
+        </figure>
+        <figure data-reveal className="fade overflow-hidden rounded-sm border border-border bg-card/70">
+          <img
+            src="/ethiopian-lalibela.png"
+            alt="Nighttime candlelight celebration at a historic Ethiopian church"
+            className="h-56 w-full object-cover md:h-72"
+          />
+        </figure>
+        <figure data-reveal className="fade overflow-hidden rounded-sm border border-border bg-card/70">
+          <img
+            src="/invincible-poster.png"
+            alt="Invincible animated series poster"
+            className="h-56 w-full object-cover md:h-72"
+          />
+        </figure>
+      </div>
+    </section>
+  );
+}
+
 export function Contact() {
   const [state, setState] = useState<"idle" | "ok" | "err">("idle");
   const copy = async () => {
@@ -355,7 +386,7 @@ export function Contact() {
   };
   return (
     <section id="contact" data-scene="5" className={`${wrap} flex min-h-[90svh] flex-col justify-center py-28`}>
-      <p className="label-mono">06 · Contact</p>
+      <p className="label-mono">07 · Contact</p>
       <h2 data-reveal className="text-mega mt-8">
         <Mask>Let’s build</Mask>
         <Mask>something</Mask>

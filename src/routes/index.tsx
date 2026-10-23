@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { MotionProvider, useRevealAll } from "@/components/site/motion";
 import { Nav } from "@/components/site/Nav";
 import { SceneCanvas } from "@/components/site/SceneCanvas";
-import { Contact, Experience, Hero, Index as MoreIndex, Story, Strip, Ventures, Work } from "@/components/site/Sections";
+import { Contact, Experience, Gallery, Hero, Index as MoreIndex, Story, Strip, Ventures, Work } from "@/components/site/Sections";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,6 +33,7 @@ function Page() {
         <Ventures />
         <Story />
         <MoreIndex />
+        <Gallery />
         <Contact />
       </main>
     </div>
