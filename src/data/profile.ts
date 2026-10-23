@@ -10,7 +10,7 @@ export const metrics = {
 };
 
 export const links = {
-  email: "daa3@williams.edu",
+  email: "diressabebe23@gmail.com",
   linkedin: "https://www.linkedin.com/in/dires-a-abatieneh",
   github: "https://github.com/Dierzeethiopia",
 };
@@ -18,10 +18,9 @@ export const links = {
 export const profile = {
   name: "Dires Abatieneh",
   greeting: "ሰላም — hi, I’m Dires.",
-  focus: ["Backend", "Infrastructure", "AI"],
   school: "CS + Mathematics at Williams College ’28",
   previously: "Previously SWE Intern at Slack / Salesforce",
-  tagline: "I build systems that feel simple on the surface, with a lot happening underneath.",
+  tagline: "I like figuring out what makes things work, then making them work better. That curiosity has taken me from notification infrastructure at Slack to building AI tools at Williams. These days, I’m drawn to backend systems, useful AI, and ideas I can’t leave alone.",
 };
 
 export type Experience = {
@@ -33,6 +32,12 @@ export type Experience = {
 };
 
 export const experience: Experience[] = [
+  {
+    org: "Slack / Salesforce",
+    role: "Infrastructure Software Engineering Intern",
+    meta: "San Francisco · Jun–Aug 2026",
+    points: ["Built delayed-notification infrastructure spanning backend job orchestration, real-time messaging hooks and frontend state synchronization."],
+  },
   {
     org: "WSO at Williams",
     role: "Operations & Backend Engineer",
@@ -61,6 +66,42 @@ export const experience: Experience[] = [
     role: "Student Consultant",
     meta: "Williamstown",
     points: ["Support users and troubleshoot device, connectivity and campus technology issues."],
+  },
+  {
+    org: "AI4All Ignite · Code2040 · ColorStack · Keploy API Fellowship",
+    role: "Fellowships & Communities",
+    meta: "Sep 2024 – Present",
+    points: [],
+  },
+  {
+    org: "Pinterest",
+    role: "Selected Participant — Pin It To Win It Program",
+    meta: "June – Aug 2026",
+    points: [],
+  },
+  {
+    org: "OURSTEM+ at The Davis Center",
+    role: "Board Member",
+    meta: "Sep 2026 – Present",
+    points: [],
+  },
+  {
+    org: "Williams Orthodox Students Organization",
+    role: "Board Member",
+    meta: "Fall 2026",
+    points: [],
+  },
+  {
+    org: "Williams Student Medicine",
+    role: "Athletics Facilities Assistant",
+    meta: "Sep 2026 – Present",
+    points: [],
+  },
+  {
+    org: "AddisCoder",
+    role: "Coding Bootcamp Student",
+    meta: "",
+    points: [],
   },
 ];
 
@@ -119,28 +160,11 @@ export const projects: Project[] = [
       { heading: "Realtime", items: ["Socket.io transport for live messaging", "MongoDB persistence"] },
     ],
   },
-  {
-    id: "homeroam",
-    title: "Homeroam",
-    subtitle: "Education platform for Ethiopia",
-    status: "Early-stage venture · customer discovery",
-    tech: ["Web", "Mobile", "Product"],
-    summary:
-      "A proposed shared space bringing assignments, grades, learning materials and communication together for Ethiopian institutions.",
-    art: "gather",
-    details: [
-      { heading: "Proposed", items: ["Assignments, grades, materials and messaging in one place", "Web and mobile access for administrators, instructors and students"] },
-      { heading: "My role", items: ["Lead vision, product and business development", "Active team collaboration began August 2026"] },
-      { heading: "Traction", items: ["Early conversations with Ethiopian university leaders"] },
-    ],
-  },
 ];
 
 export const supporting = [
-  { title: "HTTP Web Server", tech: "C · POSIX sockets · pthreads", note: "Static files, persistent connections, adaptive timeouts; tested with curl/netcat." },
   { title: "BookXchange", tech: "Java · MySQL · React · TypeScript", note: "Student book marketplace." },
   { title: "AdmitStack", tech: "TypeScript · PostgreSQL", note: "Admissions-related software." },
-  { title: "Author Identification", tech: "NLP · Language models", note: "Coursework in progress — attributing text across ten authors." },
 ];
 
 export const programs = ["AI4All Ignite", "Code2040", "Keploy API Fellowship", "CodePath", "AddisCoder", "EducationUSA", "ColorStack"];
@@ -154,9 +178,7 @@ export const skills: { area: string; items: string[] }[] = [
 ];
 
 export const community = [
-  { role: "Co-founder & President", org: "Ethiopian & Eritrean Students Association" },
-  { role: "Board Member", org: "African Students Association" },
-  { role: "Event Coordinator", org: "Orthodox Students Association" },
-  { role: "Leader", org: "International Orientation" },
+  { role: "College Application Mentor", org: "CPT · Summer 2024" },
+  { role: "Student in 2023 · Mentor for the next cohort in 2024", org: "EducationUSA Scholars Program" },
   { role: "Big Sib Mentor", org: "For a first-year international student" },
 ];

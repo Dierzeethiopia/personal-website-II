@@ -1,12 +1,11 @@
 import { useRef, useState, type ReactNode } from "react";
 import { community, experience, links, metrics, profile, programs, projects, skills, supporting, type Project } from "@/data/profile";
 import { Magnetic, Mask } from "./motion";
-import { Pipeline } from "./Pipeline";
 import { ProjectArt } from "./ProjectArt";
 
 const wrap = "relative z-10 mx-auto max-w-[1680px] px-5 md:px-10";
 
-function SectionHead({ index, label, title }: { index: string; label: string; title: ReactNode }) {
+function SectionHead({ index, label, title }: { index: string; label: string; title?: ReactNode }) {
   return (
     <header data-reveal className="mb-12 md:mb-20">
       <div className="flex items-center gap-4">
@@ -14,14 +13,19 @@ function SectionHead({ index, label, title }: { index: string; label: string; ti
         <span className="rule-draw h-px flex-1 bg-rule" />
         <span className="label-mono">{label}</span>
       </div>
-      <h2 className="text-display mt-8 max-w-5xl">{title}</h2>
+      {title && <h2 className="text-display mt-8 max-w-5xl">{title}</h2>}
     </header>
   );
 }
 
 export function Hero() {
   return (
-    <section id="top" data-scene="0" className={`${wrap} flex min-h-[100svh] flex-col justify-center pb-20 pt-28`}>
+    <section id="top" data-scene="0" className={`${wrap} relative flex min-h-[100svh] flex-col justify-center pb-20 pt-28`}>
+      <img
+        src="/profile-photo.jpe"
+        alt="Dires Abatieneh"
+        className="absolute right-5 top-[calc(7rem-0.5cm)] hidden h-72 w-56 rounded-sm border border-border object-cover opacity-90 md:block lg:right-10 lg:h-96 lg:w-72"
+      />
       <div data-reveal className="max-w-4xl">
         <p className="label-mono mb-6 flex items-center gap-3">
           <span className="h-px w-8 bg-primary" />
@@ -31,15 +35,7 @@ export function Hero() {
           <Mask>Dires</Mask>
           <Mask>Abatieneh</Mask>
         </h1>
-        <p className="mt-8 font-display text-xl md:text-2xl">
-          {profile.focus.map((f, i) => (
-            <span key={f}>
-              {f}
-              {i < profile.focus.length - 1 && <span className="mx-3 text-primary">·</span>}
-            </span>
-          ))}
-        </p>
-        <p className="mt-5 max-w-xl text-muted-foreground">{profile.tagline}</p>
+        <p className="mt-8 max-w-2xl text-muted-foreground">{profile.tagline}</p>
         <dl className="mt-8 grid max-w-xl gap-x-8 gap-y-2 border-t border-border pt-5 sm:grid-cols-2">
           <div><dt className="label-mono">Study</dt><dd className="text-sm">{profile.school}</dd></div>
           <div><dt className="label-mono">Experience</dt><dd className="text-sm">{profile.previously}</dd></div>
@@ -56,6 +52,26 @@ export function Hero() {
             </a>
           </Magnetic>
         </div>
+        <div className="mt-6 flex flex-wrap gap-3">
+          <a
+            href={links.linkedin}
+            target="_blank"
+            rel="noreferrer"
+            className="group inline-flex min-h-10 items-center gap-3 rounded-full border border-border px-4 text-sm transition-colors duration-200 hover:border-primary hover:text-primary"
+          >
+            <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-foreground text-[0.65rem] font-bold text-background transition-colors group-hover:bg-primary group-hover:text-primary-foreground">in</span>
+            LinkedIn <span aria-hidden className="transition-transform group-hover:translate-x-0.5">↗</span>
+          </a>
+          <a
+            href={links.github}
+            target="_blank"
+            rel="noreferrer"
+            className="group inline-flex min-h-10 items-center gap-3 rounded-full border border-border px-4 text-sm transition-colors duration-200 hover:border-primary hover:text-primary"
+          >
+            <span className="flex h-5 w-5 items-center justify-center rounded-sm bg-foreground text-[0.65rem] font-bold text-background transition-colors group-hover:bg-primary group-hover:text-primary-foreground">GH</span>
+            GitHub <span aria-hidden className="transition-transform group-hover:translate-x-0.5">↗</span>
+          </a>
+        </div>
       </div>
       <a href="#strip" className="label-mono absolute bottom-8 left-5 flex items-center gap-3 md:left-10" aria-label="Scroll to content">
         <span className="relative block h-10 w-px overflow-hidden bg-rule">
@@ -71,8 +87,8 @@ export function Hero() {
 export function Strip() {
   const items = [
     ["Slack / Salesforce", "Infra SWE Intern ’26"],
-    [metrics.slackEngagementLift, "Notification engagement lift"],
-    ["Williams College", "CS + Math ’28 · Dean’s List"],
+    ["Guba Technologies", "SWE · Full Stack Intern · Summer 2025"],
+    ["Williams Student Online", "Ops & Backend Developer · Student-run website at Williams College"],
     ["Arada Academy", "Founder · 2024"],
   ];
   return (
@@ -92,41 +108,20 @@ export function Strip() {
 export function Experience() {
   return (
     <section id="experience" data-scene="1" className={`${wrap} py-28 md:py-40`}>
-      <SectionHead index="01" label="Experience" title={<>Infrastructure that <span className="text-primary">holds</span> under load.</>} />
-      <article data-reveal className="grid gap-10 border-t border-border pt-10 lg:grid-cols-12">
-        <div className="fade lg:col-span-4">
-          <p className="label-mono">San Francisco · Jun–Aug 2026</p>
-          <h3 className="text-title mt-3">Slack / Salesforce</h3>
-          <p className="mt-2 text-muted-foreground">Infrastructure Software Engineering Intern</p>
-          <p className="mt-8 font-display text-7xl text-primary md:text-8xl">{metrics.slackEngagementLift}</p>
-          <p className="label-mono mt-2">Increase in notification engagement, experiment across {metrics.slackExperimentScale}</p>
-        </div>
-        <div className="fade space-y-8 lg:col-span-8" style={{ transitionDelay: "120ms" }}>
-          {[
-            ["Problem", "Slack’s Megaphone system needed a way to deliver notifications at the right moment instead of immediately — which means holding state, timing it, and never firing twice."],
-            ["Contribution", "I built the delayed-notification infrastructure end to end: backend job orchestration, real-time messaging hooks, and frontend state synchronization so clients reflected what the server had decided."],
-            ["Reliability", "Scheduling, retries and duplicate suppression were the core of it — a delayed job that retries can easily deliver twice. I also built the observability needed to trust it, and supported production experimentation."],
-          ].map(([h, t]) => (
-            <div key={h} className="grid gap-2 md:grid-cols-[10rem_1fr]">
-              <p className="label-mono pt-1">{h}</p>
-              <p className="max-w-2xl">{t}</p>
-            </div>
-          ))}
-          <Pipeline />
-        </div>
-      </article>
-
+      <SectionHead index="01" label="Experience" />
       <ol className="relative mt-24 border-l border-border pl-8 md:ml-[33%]">
         {experience.map((e, i) => (
           <li key={e.org + e.role} data-reveal className="relative pb-12 last:pb-0">
             <span className={`absolute -left-[37px] top-2 h-2.5 w-2.5 rounded-full ${e.current ? "bg-amber" : "bg-primary"} fade`} />
             <div className="fade" style={{ transitionDelay: `${i * 40}ms` }}>
-              <p className="label-mono">{e.meta}</p>
+              {e.meta && <p className="label-mono">{e.meta}</p>}
               <h3 className="mt-2 font-display text-2xl">{e.org}</h3>
               <p className="text-muted-foreground">{e.role}</p>
-              <ul className="mt-3 max-w-2xl space-y-1 text-[0.95rem]">
-                {e.points.map((p) => <li key={p}>— {p}</li>)}
-              </ul>
+              {e.points.length > 0 && (
+                <ul className="mt-3 max-w-2xl space-y-1 text-[0.95rem]">
+                  {e.points.map((p) => <li key={p}>— {p}</li>)}
+                </ul>
+              )}
             </div>
           </li>
         ))}
@@ -291,7 +286,7 @@ export function Story() {
             </svg>
           </div>
           <div data-reveal className="space-y-5 text-lg lg:col-span-5">
-            <p className="fade">I grew up in Ethiopia and now study Computer Science and Mathematics at Williams College. I like understanding systems all the way down — why a scheduler retries, why a proof holds.</p>
+            <p className="fade">I grew up in Ethiopia and now study Computer Science and Mathematics at Williams College. I like understanding systems all the way down, why a scheduler retries, why a proof holds.</p>
             <p className="fade" style={{ transitionDelay: "100ms" }}>That same curiosity is why I care about access to education: the right resource at the right time changed my path, and I want to build the infrastructure that makes that ordinary.</p>
           </div>
         </div>
